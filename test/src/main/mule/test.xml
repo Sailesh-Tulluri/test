@@ -12,25 +12,5 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	<flow name="testFlow" doc:id="681cdd3c-0a07-4076-bb89-a3e314e64eb2" >
 		<http:listener doc:name="Listener" doc:id="42182973-93fe-4d90-81ae-99904c0cecc2" config-ref="HTTP_Listener_config" path="/test"/>
 		<logger level="INFO" doc:name="Logger" doc:id="a571d787-f846-451b-a0cb-4bdfe3ab7688" message="test flow started"/>
-		<file:read doc:name="Read" doc:id="6e5332a3-5198-490e-8eb2-14e01c093b35" path="D:\Sailesh\Mulesoft\test.xml"/>
-		<ee:transform doc:name="Transform Message" doc:id="0dfd2b9c-975d-4b02-868d-9f627fc0435e" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
----
-payload]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
-		<ee:transform doc:name="Transform Message" doc:id="82a707b2-9c21-4d89-977e-e79417aca928" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
-output application/java
----
-payload.sample map (item,index) -> {
-	"id": item.id,
-	"dob": item.dob as String {format: "MMddyy"}
-}]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
 	</flow>
 </mule>
